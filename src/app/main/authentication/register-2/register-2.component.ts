@@ -1,20 +1,22 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import { FuseConfigService } from '@fuse/services/config.service';
-import { fuseAnimations } from '@fuse/animations';
+import {FuseConfigService} from '@fuse/services/config.service';
+import {fuseAnimations} from '@fuse/animations';
+import {AngularFireAuth} from "@angular/fire/auth";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-    selector     : 'register-2',
-    templateUrl  : './register-2.component.html',
-    styleUrls    : ['./register-2.component.scss'],
+    selector: 'register-2',
+    templateUrl: './register-2.component.html',
+    styleUrls: ['./register-2.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class Register2Component implements OnInit, OnDestroy
-{
+export class Register2Component implements OnInit, OnDestroy {
     registerForm: FormGroup;
 
     // Private
@@ -22,19 +24,21 @@ export class Register2Component implements OnInit, OnDestroy
 
     constructor(
         private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
-    )
-    {
+        private _formBuilder: FormBuilder,
+        private _angularFireAuth: AngularFireAuth,
+        private _router: Router,
+        private _matSnackBar: MatSnackBar
+    ) {
         // Configure the layout
         this._fuseConfigService.config = {
             layout: {
-                navbar   : {
+                navbar: {
                     hidden: true
                 },
-                toolbar  : {
+                toolbar: {
                     hidden: true
                 },
-                footer   : {
+                footer: {
                     hidden: true
                 },
                 sidepanel: {
@@ -54,12 +58,11 @@ export class Register2Component implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         this.registerForm = this._formBuilder.group({
-            name           : ['', Validators.required],
-            email          : ['', [Validators.required, Validators.email]],
-            password       : ['', Validators.required],
+            name: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
             passwordConfirm: ['', [Validators.required, confirmPasswordValidator]]
         });
 
@@ -75,11 +78,26 @@ export class Register2Component implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+    }
+
+    createUser() {
+        this._angularFireAuth.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.password).then(() => {
+            this._router.navigate(['/login']).then(() => {
+                this._matSnackBar.open('La cuenta se creo correctamente, inicie sesión por favor.', 'Aceptar', {
+                    duration: 5000,
+                })
+            });
+
+        }).catch(response => {
+            this._matSnackBar.open('Hubo un error al crear la cuenta, intente mas tarde', 'Aceptar', {
+                duration: 5000,
+                panelClass: 'alert-error'
+            })
+        });
     }
 }
 
@@ -91,26 +109,22 @@ export class Register2Component implements OnInit, OnDestroy
  */
 export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
-    if ( !control.parent || !control )
-    {
+    if (!control.parent || !control) {
         return null;
     }
 
     const password = control.parent.get('password');
     const passwordConfirm = control.parent.get('passwordConfirm');
 
-    if ( !password || !passwordConfirm )
-    {
+    if (!password || !passwordConfirm) {
         return null;
     }
 
-    if ( passwordConfirm.value === '' )
-    {
+    if (passwordConfirm.value === '') {
         return null;
     }
 
-    if ( password.value === passwordConfirm.value )
-    {
+    if (password.value === passwordConfirm.value) {
         return null;
     }
 

@@ -30,6 +30,10 @@ const appRoutes: Routes = [
         loadChildren: () => import('./main/authentication/login/login.module').then(m => m.LoginModule)
     },
     {
+        path: 'register',
+        loadChildren: () => import('./main/authentication/register-2/register-2.module').then(m => m.Register2Module)
+    },
+    {
         path: 'pages',
         // canActivate: [AuthGuardService],
         loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule),
