@@ -1,28 +1,25 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {Platform} from '@angular/cdk/platform';
-import {TranslateService} from '@ngx-translate/core';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-
-import {FuseConfigService} from '@fuse/services/config.service';
-import {FuseNavigationService} from '@fuse/components/navigation/navigation.service';
-import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
-import {FuseSplashScreenService} from '@fuse/services/splash-screen.service';
-import {FuseTranslationLoaderService} from '@fuse/services/translation-loader.service';
-
+import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
+import {Subject} from "rxjs";
+import {DOCUMENT} from "@angular/common";
+import {FuseConfigService} from "../../../@fuse/services/config.service";
+import {FuseNavigationService} from "../../../@fuse/components/navigation/navigation.service";
+import {FuseSidebarService} from "../../../@fuse/components/sidebar/sidebar.service";
+import {FuseSplashScreenService} from "../../../@fuse/services/splash-screen.service";
+import {FuseTranslationLoaderService} from "../../../@fuse/services/translation-loader.service";
+import {TranslateService} from "@ngx-translate/core";
+import {Platform} from "@angular/cdk/platform";
+import {locale as navigationEnglish} from "../../navigation/i18n/en";
+import {locale as navigationTurkish} from "../../navigation/i18n/tr";
+import {takeUntil} from "rxjs/operators";
 import {navigation} from 'app/navigation/navigation';
-import {locale as navigationEnglish} from 'app/navigation/i18n/en';
-import {locale as navigationTurkish} from 'app/navigation/i18n/tr';
-import * as firebase from "firebase";
-import {UserService} from "./shared/services/user.service";
 
 @Component({
-    selector: 'app',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    selector: 'app-pages',
+    templateUrl: './pages.component.html',
+    styleUrls: ['./pages.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class PagesComponent implements OnInit, OnDestroy {
+
     fuseConfig: any;
     navigation: any;
 
@@ -170,4 +167,5 @@ export class AppComponent implements OnInit, OnDestroy {
     toggleSidebarOpen(key): void {
         this._fuseSidebarService.getSidebar(key).toggleOpen();
     }
+
 }

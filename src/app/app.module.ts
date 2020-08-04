@@ -20,7 +20,8 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "./environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {UserService} from "./main/shared/services/user.service";
+import {UserService} from "./shared/services/user.service";
+import {AuthGuardService} from "./shared/services/auth-guard.service";
 
 const appRoutes: Routes = [
     {
@@ -36,9 +37,8 @@ const appRoutes: Routes = [
     },
     {
         path: 'pages',
-        // canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         loadChildren: () => import('./main/pages/pages.module').then(m => m.PagesModule),
-        data: <any>{title: 'Pages', breadcrumb: 'Pages', claim: 'default'},
     },
     {
         path: '**',
@@ -87,7 +87,8 @@ const appRoutes: Routes = [
         AppComponent
     ],
     providers: [
-        UserService
+        UserService,
+        AuthGuardService
     ]
 })
 export class AppModule {
