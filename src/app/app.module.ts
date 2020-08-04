@@ -22,6 +22,7 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {UserService} from "./shared/services/user.service";
 import {AuthGuardService} from "./shared/services/auth-guard.service";
+import {AngularFireAuthModule} from "@angular/fire/auth";
 
 const appRoutes: Routes = [
     {
@@ -78,7 +79,8 @@ const appRoutes: Routes = [
 
         // Firebase
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        AngularFireAuthModule
     ],
     exports: [
         AppComponent

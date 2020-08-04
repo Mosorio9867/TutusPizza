@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Subject} from 'rxjs';
-import {filter, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
-import * as _ from 'lodash';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
 
 import {navigation} from 'app/navigation/navigation';
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AngularFireAuth} from "@angular/fire/auth";
 
 @Component({
     selector: 'toolbar',
@@ -38,6 +38,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _activatedRoute: ActivatedRoute,
+        private _angularFireAuth: AngularFireAuth,
+        private _router: Router
     ) {
         this.navigation = navigation;
 
@@ -96,5 +98,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     search(value): void {
         // Do your search here...
         console.log(value);
+    }
+
+    logout(): void {
+        this._angularFireAuth.signOut().then(() => {
+            this._router.navigate(['']);
+        })
     }
 }
