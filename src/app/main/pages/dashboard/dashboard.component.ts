@@ -11,6 +11,7 @@ import {fuseAnimations} from '@fuse/animations';
 export class DashboardComponent implements OnInit {
 
     constructor() {
+
     }
 
     ngOnInit(): void {

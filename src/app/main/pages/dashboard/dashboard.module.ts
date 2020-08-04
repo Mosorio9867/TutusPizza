@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {DashboardComponent} from "./dashboard.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {AngularFireAuthModule} from "@angular/fire/auth";
 
 const routes = [
     {
@@ -17,6 +18,7 @@ const routes = [
     imports: [
         RouterModule.forChild(routes),
         FlexLayoutModule,
+        AngularFireAuthModule
     ]
 })
 export class dashboardModule {

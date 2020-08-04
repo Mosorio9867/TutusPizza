@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {UserService} from "../shared/services/user.service";
 
 const pagesRoutes: Routes = [
     {
@@ -14,7 +15,10 @@ const pagesRoutes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(pagesRoutes)
+        RouterModule.forChild(pagesRoutes),
+    ],
+    providers: [
+        UserService
     ]
 })
 export class PagesModule {

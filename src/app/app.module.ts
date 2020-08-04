@@ -20,6 +20,7 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "./environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {UserService} from "./main/shared/services/user.service";
 
 const appRoutes: Routes = [
     {
@@ -84,6 +85,9 @@ const appRoutes: Routes = [
     ],
     bootstrap: [
         AppComponent
+    ],
+    providers: [
+        UserService
     ]
 })
 export class AppModule {

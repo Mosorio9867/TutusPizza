@@ -8,6 +8,8 @@ import {fuseAnimations} from '@fuse/animations';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../../shared/services/user.service";
+import UserCredential = firebase.auth.UserCredential;
 
 @Component({
     selector: 'register-2',
@@ -27,7 +29,8 @@ export class Register2Component implements OnInit, OnDestroy {
         private _formBuilder: FormBuilder,
         private _angularFireAuth: AngularFireAuth,
         private _router: Router,
-        private _matSnackBar: MatSnackBar
+        private _matSnackBar: MatSnackBar,
+        private _userService: UserService
     ) {
         // Configure the layout
         this._fuseConfigService.config = {
@@ -84,20 +87,33 @@ export class Register2Component implements OnInit, OnDestroy {
         this._unsubscribeAll.complete();
     }
 
-    createUser() {
-        this._angularFireAuth.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.password).then(() => {
-            this._router.navigate(['/login']).then(() => {
-                this._matSnackBar.open('La cuenta se creo correctamente, inicie sesión por favor.', 'Aceptar', {
-                    duration: 5000,
-                })
-            });
-
-        }).catch(response => {
-            this._matSnackBar.open('Hubo un error al crear la cuenta, intente mas tarde', 'Aceptar', {
-                duration: 5000,
-                panelClass: 'alert-error'
+    createAccount() {
+        this._angularFireAuth.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.password)
+            .then((response: UserCredential) => {
+                this.createUser({
+                    id: response.user.uid,
+                    role: 'client',
+                    username: this.registerForm.value.name,
+                    email: this.registerForm.value.email
+                });
             })
-        });
+            .catch(() => {
+                this._matSnackBar.open('Hubo un error al crear la cuenta, intente mas tarde', 'Aceptar', {
+                    duration: 5000,
+                    panelClass: 'alert-error'
+                });
+            });
+    }
+
+    createUser(data: any): void {
+        this._userService.create(data)
+            .then(() => {
+                this._router.navigate(['/login']).then(() => {
+                    this._matSnackBar.open('La cuenta se creo correctamente, inicie sesión por favor.', 'Aceptar', {
+                        duration: 5000,
+                    })
+                });
+            });
     }
 }
 
