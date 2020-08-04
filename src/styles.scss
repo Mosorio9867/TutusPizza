@@ -8,3 +8,21 @@
   padding: 24px;
   background: white;
 }
+
+.alert-warn {
+  background: orange !important;
+  color: white !important;
+}
+
+.alert-warn .mat-simple-snackbar-action {
+  color: white !important;
+}
+
+.alert-error {
+  background: red !important;
+  color: white !important;
+}
+
+.alert-error .mat-simple-snackbar-action {
+  color: white !important;
+}

@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {fuseAnimations} from '@fuse/animations';
+import {AngularFireAuth} from "@angular/fire/auth";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: 'login',
@@ -22,7 +25,10 @@ export class LoginComponent implements OnInit {
      */
     constructor(
         private _fuseConfigService: FuseConfigService,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        private _angularFireAuth: AngularFireAuth,
+        private _router: Router,
+        private _matSnackBar: MatSnackBar
     ) {
         // Configure the layout
         this._fuseConfigService.config = {
@@ -55,5 +61,19 @@ export class LoginComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
         });
+    }
+
+    signIn() {
+        this._angularFireAuth
+            .signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password)
+            .then(() => {
+                this._router.navigate(['/pages/dashboard']);
+            })
+            .catch(() => {
+                this._matSnackBar.open('El usuario o la contraseña ingresada no es correcta.', 'Aceptar', {
+                    duration: 5000,
+                    panelClass: 'alert-error'
+                })
+            });
     }
 }

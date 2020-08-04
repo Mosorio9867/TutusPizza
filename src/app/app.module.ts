@@ -16,6 +16,10 @@ import {fuseConfig} from 'app/fuse-config';
 
 import {AppComponent} from 'app/app.component';
 import {LayoutModule} from 'app/layout/layout.module';
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "./environments/environment";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 const appRoutes: Routes = [
     {
@@ -55,6 +59,7 @@ const appRoutes: Routes = [
         // Material
         MatButtonModule,
         MatIconModule,
+        MatSnackBarModule,
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
@@ -65,6 +70,10 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
+
+        // Firebase
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule
     ],
     exports: [
         AppComponent

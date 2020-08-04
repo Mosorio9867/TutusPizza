@@ -10,9 +10,9 @@
             Bienvenido a TUTU´S PIZZA!
         </div>
 
-<!--        <div class="description" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">-->
-<!--            Sistema para medicos independientes.-->
-<!--        </div>-->
+        <!--        <div class="description" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">-->
+        <!--            Sistema para medicos independientes.-->
+        <!--        </div>-->
 
     </div>
 
@@ -61,7 +61,7 @@
                 </div>
 
                 <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
-                        [disabled]="loginForm.invalid" [routerLink]="'/pages/dashboard'"> INGRESAR
+                        [disabled]="loginForm.invalid" (click)="signIn()"> INGRESAR
                 </button>
 
             </form>

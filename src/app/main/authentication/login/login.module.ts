@@ -3,6 +3,7 @@ import {RouterModule} from '@angular/router';
 import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {FuseSharedModule} from '@fuse/shared.module';
 import {LoginComponent} from 'app/main/authentication/login/login.component';
+import {AngularFireAuthModule} from "@angular/fire/auth";
 
 const routes = [
     {
@@ -24,7 +25,8 @@ const routes = [
         MatIconModule,
         MatInputModule,
 
-        FuseSharedModule
+        FuseSharedModule,
+        AngularFireAuthModule
     ]
 })
 export class LoginModule {
