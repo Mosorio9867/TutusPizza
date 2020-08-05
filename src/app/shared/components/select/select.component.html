@@ -1,0 +1,13 @@
+<mat-form-field fxFlex="100" appearance="outline" [style.marginBottom]="'-1.25em'">
+    <mat-label> {{ placeHolder }} </mat-label>
+    <mat-select (selectionChange)="change($event.value)" [(ngModel)]="currentValue">
+        <mat-option *ngIf="showDefaultValue" [value]="_defaultValue.id">{{_defaultValue.text}}</mat-option>
+        <mat-option *ngFor="let item of data" [value]="item.id" [disabled]="item.active === false">
+            {{ item.text }}
+        </mat-option>
+    </mat-select>
+    <mat-icon matSuffix class="icon" matTooltip="'clear'" *ngIf="currentValue && currentValue.id !== ''"
+        (click)="currentValue = _defaultValue; change(null)">
+        clear
+    </mat-icon>
+</mat-form-field>

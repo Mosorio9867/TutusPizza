@@ -1,3 +1,24 @@
-<p>
-  product-form works!
-</p>
+<form fxFlex="100" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="5px grid" [formGroup]="form">
+    <mat-form-field appearance="outline" fxFlex="100" [style.marginBottom]="'-1.25em'">
+        <mat-label> Nombre</mat-label>
+        <input matInput type="text" formControlName="name" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="25" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio</mat-label>
+        <input matInput type="number" formControlName="price" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="25" [style.marginBottom]="'-1.25em'">
+        <mat-label> Puntos por unidad</mat-label>
+        <input matInput type="number" formControlName="pointPerUnit" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="25" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio por puntos</mat-label>
+        <input matInput type="number" formControlName="pricePerPoint" required />
+    </mat-form-field>
+    <app-select fxFlex="25" [placeHolder]="'Tipo'" [data]="types" formControlName="type"> </app-select>
+    <mat-form-field appearance="outline" fxFlex="100" [style.marginBottom]="'-1.25em'">
+        <mat-label> Descripción</mat-label>
+        <textarea matInput type="text" formControlName="description" required></textarea>
+    </mat-form-field>
+    <mat-slide-toggle formControlName="active" fxFlex="25" [style.marginBottom]="'-1.25em'"> Activo </mat-slide-toggle>
+</form>

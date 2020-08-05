@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { ProductService } from 'app/shared/services/product.service';
+import { Product } from '../product.module';
+import { UUID } from 'uuid-generator-ts';
 
 @Component({
     selector: 'app-product-listing',
@@ -10,8 +12,10 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
 })
 export class ProductListingComponent implements OnInit {
 
+
     constructor(
-        private _matDialog: MatDialog
+        private _matDialog: MatDialog,
+        private _productService: ProductService
     ) { }
 
     ngOnInit(): void {
@@ -28,6 +32,19 @@ export class ProductListingComponent implements OnInit {
                 if (!result) {
                     return;
                 }
+                const uuid = new UUID();
+                const data: Product = {
+                    id: uuid.getDashFreeUUID(),
+                    name: result.name,
+                    description: result.description,
+                    type: result.type,
+                    ingredients: [],
+                    price: result.price,
+                    pointPerUnit: result.pointPerUnit,
+                    pricePerPoint: result.pricePerPoint,
+                    active: result.active
+                }
+                this._productService.create(data)
             });
     }
 }
