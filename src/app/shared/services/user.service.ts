@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
+
+    public userSubject = new BehaviorSubject(null);
 
     constructor(
         private firestore: AngularFirestore
@@ -30,5 +32,9 @@ export class UserService {
 
     public remove(data: any): any {
         return this.firestore.collection('users').doc(data.id).delete();
+    }
+
+    public updateUser(data) {
+        this.userSubject.next(data);
     }
 }

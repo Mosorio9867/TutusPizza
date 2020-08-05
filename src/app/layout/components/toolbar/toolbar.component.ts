@@ -1,14 +1,16 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {TranslateService} from '@ngx-translate/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
-import {FuseConfigService} from '@fuse/services/config.service';
-import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
+import { FuseConfigService } from '@fuse/services/config.service';
+import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-import {navigation} from 'app/navigation/navigation';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AngularFireAuth} from "@angular/fire/auth";
+import { navigation } from 'app/navigation/navigation';
+import { ActivatedRoute, Router } from "@angular/router";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { UserService } from 'app/shared/services/user.service';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'toolbar',
@@ -39,12 +41,21 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseSidebarService: FuseSidebarService,
         private _activatedRoute: ActivatedRoute,
         private _angularFireAuth: AngularFireAuth,
-        private _router: Router
+        private _router: Router,
+        private _userService: UserService
     ) {
         this.navigation = navigation;
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
+        this._userService.userSubject.subscribe(value => {
+            if (isNullOrUndefined(value)) {
+                return;
+            }
+
+            console.log(value)
+        })
 
     }
 

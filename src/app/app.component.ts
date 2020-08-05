@@ -16,6 +16,9 @@ import {locale as navigationEnglish} from 'app/navigation/i18n/en';
 import {locale as navigationTurkish} from 'app/navigation/i18n/tr';
 import * as firebase from "firebase";
 import {UserService} from "./shared/services/user.service";
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'app',
@@ -50,6 +53,9 @@ export class AppComponent implements OnInit, OnDestroy {
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
         private _platform: Platform,
+        private _firebaseAuth: AngularFireAuth,
+        private _userService: UserService,
+        private _router: Router
     ) {
         // Get default navigation
         this.navigation = navigation;
@@ -112,6 +118,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
+
+        this._firebaseAuth.authState.subscribe(authState => {
+            if (isNullOrUndefined(authState)) {
+                this._router.navigate(['/login']);
+                return false;
+            } else {
+                this._userService.getById(authState.uid)
+                    .subscribe(value => {
+                        const user = value.payload.data() as firebase.User;
+                        this._userService.updateUser(user);
+                    })
+            }
+        });
     }
 
     // -----------------------------------------------------------------------------------------------------
