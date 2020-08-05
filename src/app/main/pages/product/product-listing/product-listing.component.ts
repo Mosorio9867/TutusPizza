@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { ProductService } from 'app/shared/services/product.service';
 import { Product } from '../product.module';
 import { UUID } from 'uuid-generator-ts';
+import { ProductTableComponent } from '../product-table/product-table.component';
 
 @Component({
     selector: 'app-product-listing',
@@ -12,6 +13,7 @@ import { UUID } from 'uuid-generator-ts';
 })
 export class ProductListingComponent implements OnInit {
 
+    @ViewChild(ProductTableComponent, { static: true }) productTableComponent: ProductTableComponent;
 
     constructor(
         private _matDialog: MatDialog,
@@ -38,13 +40,16 @@ export class ProductListingComponent implements OnInit {
                     name: result.name,
                     description: result.description,
                     type: result.type,
-                    ingredients: [],
                     price: result.price,
                     pointPerUnit: result.pointPerUnit,
                     pricePerPoint: result.pricePerPoint,
                     active: result.active
                 }
-                this._productService.create(data)
+                this._productService.create(data).then(() => this.productTableComponent._loadData());
             });
+    }
+
+    onChangeFilters(event): void {
+        this.productTableComponent.applyFilter(event);
     }
 }

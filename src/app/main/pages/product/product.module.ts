@@ -13,7 +13,6 @@ export interface Product {
     name: string;
     description: string;
     type: string;
-    ingredients: Ingredient[];
     price: number;
     pointPerUnit: number;
     pricePerPoint: number;

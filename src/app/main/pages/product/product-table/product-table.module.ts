@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductTableComponent } from './product-table.component';
 import { MatTableModule, MatPaginatorModule, MatIconModule, MatButtonModule, MatTooltipModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProductDetailModule } from '../product-detail/product-detail.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ProductDetailModule
   ],
   declarations: [ProductTableComponent],
   exports: [ProductTableComponent],

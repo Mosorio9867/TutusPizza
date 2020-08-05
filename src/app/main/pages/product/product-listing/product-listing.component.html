@@ -4,7 +4,7 @@
             <mat-card-title> Filtros</mat-card-title>
         </mat-card-header>
         <mat-card-content fxLayout="row wrap" fxLayout.lt-md="column">
-            <app-product-filter fxFlex="100"></app-product-filter>
+            <app-product-filter fxFlex="100" (onChangeFilters)="onChangeFilters($event)"></app-product-filter>
         </mat-card-content>
         <mat-card-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
             <button mat-raised-button type="button" color="primary" (click)="newProduct()">

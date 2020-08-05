@@ -1,7 +1,7 @@
 <form [formGroup]="form" fxFlex="100">
   <mat-form-field fxFlex="50" fxFlex.lt-md="100" appearance="outline">
     <mat-label> Buscar por nombre</mat-label>
-    <input matInput type="text" placeholder="Ingrese minimo 3 caracteres..." formControlName="search">
+    <input matInput type="text" placeholder="Ingrese minimo 3 caracteres..." formControlName="search" #quickSearchInput>
     <mat-icon
       (click)="form.value.search === null || form.value.search === '' ? null : form.controls['search'].setValue(null)"
       matSuffix> {{ form.value.search === null || form.value.search === '' ? 'search' : 'close' }}</mat-icon>
