@@ -32,7 +32,6 @@ export class ProductFilterComponent implements AfterViewInit {
           distinctUntilChanged(),
           filter((input: any) => !isNullOrUndefined(input)),
           tap((input: any) => {
-            console.log(input)
             this.onChangeFilters.emit(input)
           })
         ).subscribe();

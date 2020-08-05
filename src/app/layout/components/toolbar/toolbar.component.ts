@@ -97,7 +97,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
      */
     search(value): void {
         // Do your search here...
-        console.log(value);
+        // console.log(value);
     }
 
     logout(): void {
