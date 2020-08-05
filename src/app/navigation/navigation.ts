@@ -13,12 +13,19 @@ export const navigation: FuseNavigation[] = [
                 icon: 'dashboard',
                 url: '/pages/dashboard'
             },
+            // {
+            //     id: 'person',
+            //     title: 'Personas',
+            //     type: 'item',
+            //     icon: 'person',
+            //     url: '/pages/person/list'
+            // },
             {
-                id: 'person',
-                title: 'Personas',
+                id: 'product',
+                title: 'Productos',
                 type: 'item',
-                icon: 'person',
-                url: '/pages/person/list'
+                icon: 'category',
+                url: '/pages/product/list'
             }
         ]
     }

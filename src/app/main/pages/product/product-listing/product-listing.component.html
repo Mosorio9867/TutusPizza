@@ -1,0 +1,29 @@
+<div fxFlex="100" fxLayout="column" class="page" fxLayoutGap="12px">
+  <mat-card fxLayout="column" class="mat-elevation-z3">
+      <mat-card-header>
+          <mat-card-title> Filtros</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="row wrap" fxLayout.lt-md="column">
+          <app-product-filter fxFlex="100"></app-product-filter>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+          <button mat-flat-button type="button" color="accent" (click)="newProduct()">
+              <mat-icon> add</mat-icon>
+              Nuevo
+          </button>
+          <button mat-flat-button type="button" color="primary">
+              <mat-icon> refresh</mat-icon>
+              Actualizar
+          </button>
+      </mat-card-actions>
+  </mat-card>
+  <mat-card fxLayout="column" class="mat-elevation-z3">
+      <mat-card-header>
+          <mat-card-title> Priductos</mat-card-title>
+          <mat-card-subtitle> Listado de priductos</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content fxLayout="column">
+          <app-product-table fxFlex="100"></app-product-table>
+      </mat-card-content>
+  </mat-card>
+</div>
