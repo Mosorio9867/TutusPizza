@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
@@ -25,6 +24,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     hiddenNavbar: boolean;
     navigation: any;
     currentTitle: string;
+    username: string;
+    email: string;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -54,7 +55,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                 return;
             }
 
-            console.log(value)
+            this.username = value.username;
+            this.email = value.email;
         })
 
     }
@@ -86,6 +88,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+        this._userService.userSubject.next(null);
+        this._userService.userSubject.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------
