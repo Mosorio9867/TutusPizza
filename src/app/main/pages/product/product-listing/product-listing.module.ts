@@ -6,6 +6,7 @@ import { ProductTableModule } from '../../product/product-table/product-table.mo
 import { ProductFilterModule } from '../../product/product-filter/product-filter.module';
 import { MatCardModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { ProductDetailModule } from '../product-detail/product-detail.module';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
         MatCardModule,
         MatIconModule,
         MatButtonModule,
-        RouterModule
+        RouterModule,
+        ProductDetailModule
     ],
     declarations: [ProductListingComponent]
 })

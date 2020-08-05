@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
     selector: 'app-product-listing',
@@ -9,13 +11,23 @@ import { Router } from '@angular/router';
 export class ProductListingComponent implements OnInit {
 
     constructor(
-        private _router: Router
+        private _matDialog: MatDialog
     ) { }
 
     ngOnInit(): void {
     }
 
     newProduct(): void {
-        this._router.navigate(['/pages/product']);
+        this._matDialog.open(ProductDetailComponent, {
+            width: '900px',
+            data: {
+                title: 'Crear nuevo producto'
+            }
+        }).afterClosed()
+            .subscribe(result => {
+                if (!result) {
+                    return;
+                }
+            });
     }
 }
