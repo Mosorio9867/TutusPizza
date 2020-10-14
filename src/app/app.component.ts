@@ -16,9 +16,10 @@ import {locale as navigationEnglish} from 'app/navigation/i18n/en';
 import {locale as navigationTurkish} from 'app/navigation/i18n/tr';
 import * as firebase from "firebase";
 import {UserService} from "./shared/services/user.service";
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { isNullOrUndefined } from 'util';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
+import {isNullOrUndefined} from 'util';
+import {FuseNavigation} from "../@fuse/types";
 
 @Component({
     selector: 'app',
@@ -27,7 +28,7 @@ import { isNullOrUndefined } from 'util';
 })
 export class AppComponent implements OnInit, OnDestroy {
     fuseConfig: any;
-    navigation: any;
+    navigation: FuseNavigation[];
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -57,15 +58,6 @@ export class AppComponent implements OnInit, OnDestroy {
         private _userService: UserService,
         private _router: Router
     ) {
-        // Get default navigation
-        this.navigation = navigation;
-
-        // Register the navigation to the service
-        this._fuseNavigationService.register('main', this.navigation);
-
-        // Set the main navigation as our current navigation
-        this._fuseNavigationService.setCurrentNavigation('main');
-
         // Add languages
         this._translateService.addLangs(['en', 'tr']);
 
@@ -128,6 +120,15 @@ export class AppComponent implements OnInit, OnDestroy {
                     .subscribe(value => {
                         const user = value.payload.data() as firebase.User;
                         this._userService.updateUser(user);
+
+                        // Get default navigation
+                        this.navigation = this.getNavigationByRoleId(navigation, user['role']);
+
+                        // Register the navigation to the service
+                        this._fuseNavigationService.register('main', this.navigation);
+
+                        // Set the main navigation as our current navigation
+                        this._fuseNavigationService.setCurrentNavigation('main');
                     })
             }
         });
@@ -188,5 +189,10 @@ export class AppComponent implements OnInit, OnDestroy {
      */
     toggleSidebarOpen(key): void {
         this._fuseSidebarService.getSidebar(key).toggleOpen();
+    }
+
+    getNavigationByRoleId(navigationDefault: FuseNavigation[], role): FuseNavigation[] {
+        navigationDefault[0].children = navigationDefault[0].children.filter((navigation: FuseNavigation) => navigation.role === role);
+        return navigationDefault;
     }
 }

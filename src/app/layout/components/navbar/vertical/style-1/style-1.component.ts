@@ -1,15 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { delay, filter, take, takeUntil } from 'rxjs/operators';
-
-import { FuseConfigService } from '@fuse/services/config.service';
-import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
-import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import { UserService } from 'app/shared/services/user.service';
-import { values } from 'lodash';
-import { isNullOrUndefined } from 'util';
+import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {delay, filter, take, takeUntil} from 'rxjs/operators';
+import {FuseConfigService} from '@fuse/services/config.service';
+import {FuseNavigationService} from '@fuse/components/navigation/navigation.service';
+import {FusePerfectScrollbarDirective} from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
+import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
+import {UserService} from 'app/shared/services/user.service';
 
 @Component({
     selector: 'navbar-vertical-style-1',
@@ -18,10 +15,10 @@ import { isNullOrUndefined } from 'util';
     encapsulation: ViewEncapsulation.None
 })
 export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
+
     fuseConfig: any;
     navigation: any;
-    username: string;
-    email: string;
+    currentUser: any;
 
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
@@ -45,15 +42,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
 
-        this._userService.userSubject
-            .subscribe(value => {
-                if (isNullOrUndefined(value)) {
-                    return;
-                }
-
-                this.username = value.username;
-                this.email = value.email;
-            })
+        this._userService.user$.subscribe(value => this.currentUser = value)
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -61,7 +50,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
     // -----------------------------------------------------------------------------------------------------
 
     // Directive
-    @ViewChild(FusePerfectScrollbarDirective, { static: true })
+    @ViewChild(FusePerfectScrollbarDirective, {static: true})
     set directive(theDirective: FusePerfectScrollbarDirective) {
         if (!theDirective) {
             return;
@@ -86,18 +75,18 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
                 take(1)
             )
             .subscribe(() => {
-                setTimeout(() => {
-                    const activeNavItem: any = document.querySelector('navbar .nav-link.active');
+                    setTimeout(() => {
+                        const activeNavItem: any = document.querySelector('navbar .nav-link.active');
 
-                    if (activeNavItem) {
-                        const activeItemOffsetTop = activeNavItem.offsetTop,
-                            activeItemOffsetParentTop = activeNavItem.offsetParent.offsetTop,
-                            scrollDistance = activeItemOffsetTop - activeItemOffsetParentTop - (48 * 3) - 168;
+                        if (activeNavItem) {
+                            const activeItemOffsetTop = activeNavItem.offsetTop,
+                                activeItemOffsetParentTop = activeNavItem.offsetParent.offsetTop,
+                                scrollDistance = activeItemOffsetTop - activeItemOffsetParentTop - (48 * 3) - 168;
 
-                        this._fusePerfectScrollbar.scrollToTop(scrollDistance);
-                    }
-                });
-            }
+                            this._fusePerfectScrollbar.scrollToTop(scrollDistance);
+                        }
+                    });
+                }
             );
     }
 
@@ -118,8 +107,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy {
                 if (this._fuseSidebarService.getSidebar('navbar')) {
                     this._fuseSidebarService.getSidebar('navbar').close();
                 }
-            }
-            );
+            });
 
         // Subscribe to the config changes
         this._fuseConfigService.config

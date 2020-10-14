@@ -6,6 +6,10 @@ import {fuseAnimations} from '@fuse/animations';
 import {AngularFireAuth} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {FuseSplashScreenService} from "../../../../@fuse/services/splash-screen.service";
+import * as firebase from "firebase";
+import {UserService} from "../../../shared/services/user.service";
+import UserCredential = firebase.auth.UserCredential;
 
 @Component({
     selector: 'login',
@@ -28,7 +32,9 @@ export class LoginComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _angularFireAuth: AngularFireAuth,
         private _router: Router,
-        private _matSnackBar: MatSnackBar
+        private _matSnackBar: MatSnackBar,
+        private _fuseSplashScreenService: FuseSplashScreenService,
+        private _userService: UserService,
     ) {
         // Configure the layout
         this._fuseConfigService.config = {
@@ -64,12 +70,22 @@ export class LoginComponent implements OnInit {
     }
 
     signIn() {
+        this._fuseSplashScreenService.show();
         this._angularFireAuth
             .signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password)
-            .then(() => {
-                this._router.navigate(['/pages/dashboard']);
+            .then((authState: UserCredential) => {
+                this._userService.getById(authState.user.uid)
+                    .subscribe((currentUser) => {
+                        const user: any = currentUser.payload.data() as firebase.User;
+                        let url = user.role === 'admin' ? '/pages/dashboard' : '/pages/sales';
+                        this._router.navigate([url])
+                            .then(() => {
+                                window.location.reload();
+                            });
+                    });
             })
             .catch(() => {
+                this._fuseSplashScreenService.hide();
                 this._matSnackBar.open('El usuario o la contraseña ingresada no es correcta.', 'Aceptar', {
                     duration: 5000,
                     panelClass: 'alert-error'

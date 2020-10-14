@@ -11,14 +11,24 @@ export const navigation: FuseNavigation[] = [
                 title: 'Dashboard',
                 type: 'item',
                 icon: 'dashboard',
-                url: '/pages/dashboard'
+                url: '/pages/dashboard',
+                role: 'admin'
             },
             {
-                id: 'product',
-                title: 'Productos',
+                id: 'administrator_products',
+                title: 'Administrador de productos',
+                type: 'item',
+                icon: 'view_list',
+                url: '/pages/product/list',
+                role: 'admin'
+            },
+            {
+                id: 'sales',
+                title: 'Comprar',
                 type: 'item',
                 icon: 'category',
-                url: '/pages/product/list'
+                url: '/pages/sales',
+                role: 'client'
             }
         ]
     }

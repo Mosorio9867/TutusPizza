@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { Observable, BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
 
-    public userSubject = new BehaviorSubject(null);
+    public userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    public user$ = this.userSubject.asObservable();
 
     constructor(
         private firestore: AngularFirestore

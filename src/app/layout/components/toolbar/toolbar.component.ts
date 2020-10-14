@@ -1,15 +1,14 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import { FuseConfigService } from '@fuse/services/config.service';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import {FuseConfigService} from '@fuse/services/config.service';
+import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
 
-import { navigation } from 'app/navigation/navigation';
-import { ActivatedRoute, Router } from "@angular/router";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { UserService } from 'app/shared/services/user.service';
-import { isNullOrUndefined } from 'util';
+import {navigation} from 'app/navigation/navigation';
+import {ActivatedRoute, Router} from "@angular/router";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {UserService} from 'app/shared/services/user.service';
 
 @Component({
     selector: 'toolbar',
@@ -24,8 +23,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     hiddenNavbar: boolean;
     navigation: any;
     currentTitle: string;
-    username: string;
-    email: string;
+    currentUser: any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -49,16 +47,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
-
-        this._userService.userSubject.subscribe(value => {
-            if (isNullOrUndefined(value)) {
-                return;
-            }
-
-            this.username = value.username;
-            this.email = value.email;
-        })
-
+        this._userService.user$.subscribe(value => this.currentUser = value)
     }
 
     // -----------------------------------------------------------------------------------------------------
