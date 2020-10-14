@@ -1,23 +1,37 @@
 <div fxFlex="100" fxLayout="column" class="table-responsive">
     <mat-table fxFlex="100" mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> NOMBRE</mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="NOMBRE"> {{ row.name }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> TIPO</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> TIPO</mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="TIPO"> {{ row.type }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCIÓN</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> DESCRIPCIÓN</mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="DESCRIPCIÓN"> {{ row.description }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> PRECIO</mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="PRECIO"> {{row.price | currency: '$'}}  </mat-cell>
+        <ng-container matColumnDef="priceSmall">
+            <mat-header-cell *matHeaderCellDef> PRECIO PIZZETA</mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="PRECIO PIZZETA"> {{ row.priceSmall | currency: '$'}}  </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="priceMedium">
+            <mat-header-cell *matHeaderCellDef> PRECIO MEDIANA</mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="PRECIO MEDIANA"> {{ row.priceMedium | currency: '$'}}  </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="priceLarge">
+            <mat-header-cell *matHeaderCellDef> PRECIO GRANDE</mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="PRECIO GRANDE"> {{ row.priceLarge | currency: '$'}}  </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="active">
+            <mat-header-cell *matHeaderCellDef> ACTIVO</mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="ACTIVO">
+                <mat-slide-toggle color="primary" [checked]="row.active" [disabled]="true"></mat-slide-toggle>
+            </mat-cell>
         </ng-container>
         <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> ACCIONES</mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="ACCIONES">
                 <button mat-icon-button type="button" (click)="_edit(row.id)">
                     <mat-icon> edit</mat-icon>

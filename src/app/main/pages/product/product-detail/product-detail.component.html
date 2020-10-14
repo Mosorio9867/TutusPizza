@@ -1,11 +1,19 @@
 <h1 mat-dialog-title> {{ title }} </h1>
-<mat-dialog-content style="overflow: hidden;">
-  <app-product-form *ngIf="form" [form]="form"></app-product-form>
+<mat-dialog-content style="overflow: auto">
+    <app-product-form *ngIf="form" [form]="form"></app-product-form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="12px">
-    <button mat-raised-button type="button" (click)="close()"> Cancelar</button>
-    <button mat-raised-button type="button" color="primary" [disabled]="form.invalid" (click)="close(form.value)">
-      Guardar</button>
-  </div>
+    <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="12px">
+        <div fxLayoutAlign="start center">
+            <mat-slide-toggle fxFlex="100" color="primary" *ngIf="form" [formControl]="form.controls.active"> Activo
+            </mat-slide-toggle>
+        </div>
+        <div fxLayoutAlign="end center">
+            <button mat-raised-button type="button" (click)="close()"> Cancelar</button>
+            <button mat-raised-button type="button" color="primary" [disabled]="form.invalid"
+                    (click)="close(form.value)">
+                Guardar
+            </button>
+        </div>
+    </div>
 </mat-dialog-actions>

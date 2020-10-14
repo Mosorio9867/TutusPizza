@@ -7,20 +7,22 @@ import { RouterModule } from '@angular/router';
 import { ProductListingModule } from './product-listing/product-listing.module';
 import { ProductDetailModule } from './product-detail/product-detail.module';
 import { ProductService } from 'app/shared/services/product.service';
+import {Validators} from "@angular/forms";
 
 export interface Product {
     id: string;
     name: string;
     description: string;
-    type: string;
-    price: number;
-    pointPerUnit: number;
-    pricePerPoint: number;
     active: boolean;
-}
-
-export interface Ingredient {
-    name: string;
+    priceSmall: number;
+    pointPerUnitSmall: number;
+    pricePerPointSmall: number;
+    priceMedium: number;
+    pointPerUnitMedium: number;
+    pricePerPointMedium: number;
+    priceLarge: number;
+    pointPerUnitLarge: number;
+    pricePerPointLarge: number;
 }
 
 const routes = [

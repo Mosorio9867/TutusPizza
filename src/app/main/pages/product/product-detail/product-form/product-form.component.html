@@ -1,25 +1,46 @@
 <form fxFlex="100" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="5px grid" [formGroup]="form">
     <mat-form-field appearance="outline" fxFlex="100" [style.marginBottom]="'-1.25em'">
         <mat-label> Nombre</mat-label>
-        <input matInput type="text" formControlName="name" required />
+        <input matInput type="text" formControlName="name" required/>
     </mat-form-field>
-    <mat-form-field appearance="outline" fxFlex="25" [style.marginBottom]="'-1.25em'">
-        <mat-label> Precio</mat-label>
-        <input matInput type="number" formControlName="price" required />
-    </mat-form-field>
-    <mat-form-field appearance="outline" fxFlex="25" [style.marginBottom]="'-1.25em'">
-        <mat-label> Puntos por unidad</mat-label>
-        <input matInput type="number" formControlName="pointPerUnit" required />
-    </mat-form-field>
-    <mat-form-field appearance="outline" fxFlex="25" [style.marginBottom]="'-1.25em'">
-        <mat-label> Precio por puntos</mat-label>
-        <input matInput type="number" formControlName="pricePerPoint" required />
-    </mat-form-field>
-    <app-select fxFlex="25" [placeHolder]="'Tipo'" [data]="types" formControlName="type" [showDefaultValue]="false">
-    </app-select>
-    <mat-slide-toggle formControlName="active" fxFlex="100"> Activo </mat-slide-toggle>
     <mat-form-field appearance="outline" fxFlex="100" [style.marginBottom]="'-1.25em'">
         <mat-label> Descripción</mat-label>
         <textarea matInput type="text" formControlName="description" required></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio (pizzeta)</mat-label>
+        <input matInput type="number" formControlName="priceSmall" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Puntos por unidad (pizzeta)</mat-label>
+        <input matInput type="number" formControlName="pointPerUnitSmall" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio en puntos (pizzeta)</mat-label>
+        <input matInput type="number" formControlName="pricePerPointSmall" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio (mediana)</mat-label>
+        <input matInput type="number" formControlName="priceMedium" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Puntos por unidad (mediana)</mat-label>
+        <input matInput type="number" formControlName="pointPerUnitMedium" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio en puntos (mediana)</mat-label>
+        <input matInput type="number" formControlName="pricePerPointMedium" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio (grande)</mat-label>
+        <input matInput type="number" formControlName="priceLarge" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Puntos por unidad (grande)</mat-label>
+        <input matInput type="number" formControlName="pointPerUnitLarge" required/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="33.3" [style.marginBottom]="'-1.25em'">
+        <mat-label> Precio en puntos (grande)</mat-label>
+        <input matInput type="number" formControlName="pricePerPointLarge" required/>
     </mat-form-field>
 </form>

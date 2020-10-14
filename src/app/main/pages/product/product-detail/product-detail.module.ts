@@ -4,6 +4,8 @@ import { ProductDetailComponent } from './product-detail.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule, MatButtonModule } from '@angular/material';
 import { ProductFormModule } from './product-form/product-form.module';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -11,7 +13,9 @@ import { ProductFormModule } from './product-form/product-form.module';
     FlexLayoutModule,
     MatDialogModule,
     MatButtonModule,
-    ProductFormModule
+    ProductFormModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule
   ],
   declarations: [ProductDetailComponent],
   entryComponents: [ProductDetailComponent]
