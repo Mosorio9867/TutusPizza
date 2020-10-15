@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProductListingComponent } from './product-listing/product-listing.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
-import { ProductListingModule } from './product-listing/product-listing.module';
-import { ProductDetailModule } from './product-detail/product-detail.module';
-import { ProductService } from 'app/shared/services/product.service';
-import {Validators} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ProductListingComponent} from './product-listing/product-listing.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {RouterModule} from '@angular/router';
+import {ProductListingModule} from './product-listing/product-listing.module';
+import {ProductDetailModule} from './product-detail/product-detail.module';
+import {ProductService} from 'app/shared/services/product.service';
 
 export interface Product {
     id: string;
     name: string;
     description: string;
+    photo: string;
     active: boolean;
     priceSmall: number;
     pointPerUnitSmall: number;
@@ -23,6 +23,11 @@ export interface Product {
     priceLarge: number;
     pointPerUnitLarge: number;
     pricePerPointLarge: number;
+}
+
+export interface ProductInCart {
+    product: Product;
+    quantity: number;
 }
 
 const routes = [
@@ -52,5 +57,6 @@ const routes = [
         ProductService
     ]
 })
-export class ProductModule { }
+export class ProductModule {
+}
 

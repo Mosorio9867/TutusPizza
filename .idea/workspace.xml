@@ -10,24 +10,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdd768a4-1322-4559-ab5b-3ecd7ee26ffb" name="Default Changelist" comment="fix products">
-      <change afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale.module.ts" afterDir="false" />
+    <list default="true" id="bdd768a4-1322-4559-ab5b-3ecd7ee26ffb" name="Default Changelist" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/@fuse/types/fuse-navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/@fuse/types/fuse-navigation.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/components/navbar/vertical/style-1/style-1.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/components/navbar/vertical/style-1/style-1.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/components/navbar/vertical/style-1/style-1.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/components/navbar/vertical/style-1/style-1.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/components/toolbar/toolbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/components/toolbar/toolbar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/components/toolbar/toolbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/components/toolbar/toolbar.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/main/authentication/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main/authentication/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/main/pages/pages.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main/pages/pages.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/navigation/navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/navigation/navigation.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/services/auth-guard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/services/auth-guard.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.theme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main/pages/product/product.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main/pages/product/product.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main/pages/sale/sale-listing/sale-listing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shared/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/services/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1596560686753</updated>
       <workItem from="1596560687890" duration="11087000" />
-      <workItem from="1602694475302" duration="14924000" />
+      <workItem from="1602694475302" duration="23460000" />
     </task>
     <task id="LOCAL-00001" summary="INIT PROJECT">
       <created>1596561324841</created>
@@ -142,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602699967970</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix">
+      <created>1602712386987</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1602712386987</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,17 +167,18 @@
     <MESSAGE value="update" />
     <MESSAGE value="login" />
     <MESSAGE value="fix products" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix products" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1088" y="254" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1596570076344">
       <screen x="0" y="27" width="2560" height="1053" />
     </state>
     <state x="1088" y="254" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/0.27.2560.1053/314.1080.1920.1080@0.27.2560.1053" timestamp="1596570076344" />
-    <state x="875" y="263" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1602699970130">
+    <state x="875" y="263" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1602712388602">
       <screen x="0" y="27" width="2560" height="1017" />
     </state>
-    <state x="875" y="263" key="Vcs.Push.Dialog.v2/0.27.2560.1017@0.27.2560.1017" timestamp="1602699970130" />
+    <state x="875" y="263" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.2560.1017@0.27.2560.1017" timestamp="1602712388602" />
     <state x="875" y="271" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.2560.1053/314.1080.1920.1080@0.27.2560.1053" timestamp="1596571613635" />
     <state x="886" y="149" width="778" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602702628830">
       <screen x="0" y="27" width="2560" height="1017" />
@@ -188,10 +188,10 @@
       <screen x="0" y="27" width="2560" height="1053" />
     </state>
     <state x="969" y="252" width="612" height="573" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.27.2560.1053/314.1080.1920.1080@0.27.2560.1053" timestamp="1596561849511" />
-    <state x="795" y="183" width="1228" height="622" key="find.popup" timestamp="1602707895438">
+    <state x="795" y="183" width="1228" height="622" key="find.popup" timestamp="1602719141216">
       <screen x="0" y="27" width="2560" height="1017" />
     </state>
-    <state x="795" y="183" width="1228" height="622" key="find.popup/0.27.2560.1017@0.27.2560.1017" timestamp="1602707895438" />
+    <state x="795" y="183" width="1228" height="622" key="find.popup/0.27.2560.1017@0.27.2560.1017" timestamp="1602719141216" />
     <state x="795" y="189" width="1228" height="643" key="find.popup/0.27.2560.1053/314.1080.1920.1080@0.27.2560.1053" timestamp="1596572908241" />
     <state x="944" y="236" key="run.anything.popup" timestamp="1602708144952">
       <screen x="0" y="27" width="2560" height="1017" />

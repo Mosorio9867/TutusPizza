@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { map, first } from 'rxjs/operators';
-import { Product } from 'app/main/pages/product/product.module';
+import {Product, ProductInCart} from 'app/main/pages/product/product.module';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
+
+    public productsInCartSubject: BehaviorSubject<ProductInCart[]> = new BehaviorSubject<ProductInCart[]>([]);
+    public productsInCart$ = this.productsInCartSubject.asObservable();
 
     constructor(
         private _angularFirestore: AngularFirestore
@@ -55,5 +58,9 @@ export class ProductService {
 
     public remove(id: string) {
         return this._angularFirestore.collection('product').doc(id).delete();
+    }
+
+    public addToCart(data: ProductInCart[]): void {
+        this.productsInCartSubject.next(data);
     }
 }
