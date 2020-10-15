@@ -28,7 +28,12 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatBadgeModule,
         MatTooltipModule
     ],
-    declarations: [SaleListingComponent]
+    declarations: [
+        SaleListingComponent
+    ],
+    exports: [
+        SaleListingComponent
+    ],
 })
 export class SaleListingModule {
 }

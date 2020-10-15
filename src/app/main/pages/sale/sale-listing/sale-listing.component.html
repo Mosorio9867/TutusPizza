@@ -1,117 +1,63 @@
-<mat-sidenav-container fxFlex="100">
-    <div class="shop-wrap p10" fxLayout="row" fxLayoutWrap="wrap">
-        <!-- Right side -->
-        <div class="full-width">
-            <!-- Search Form -->
-            <div fxLayout="row" fxLayout.lt-sm="column" class="shop-top-toolbar">
-                <div class="product-search-wrap">
-                    <form [formGroup]="filterForm">
-                        <mat-form-field>
-                            <input matInput type="text" placeholder="Buscar por nombre" apareance="outline"
-                                   [formControl]="filterForm.controls['search']">
-                        </mat-form-field>
-                    </form>
-                </div>
-                <!-- View change buttons and cart -->
-                <span fxFlex></span>
-                <div [fxHide.lt-md]="true">
-                    <!--                    <button mat-icon-button [color]="viewMode === 'list-view' ? 'accent' : ''"-->
-                    <!--                            (click)="viewMode = 'list-view'">-->
-                    <!--                        <mat-icon>format_list_bulleted</mat-icon>-->
-                    <!--                    </button>-->
-                    <!--                    <button mat-icon-button [color]="viewMode === 'grid-view' ? 'accent' : ''"-->
-                    <!--                            (click)="viewMode = 'grid-view'">-->
-                    <!--                        <mat-icon>apps</mat-icon>-->
-                    <!--                    </button>-->
-                    <button mat-mini-fab color="primary" [matBadge]="(_productService.productsInCart$ | async).length"
-                            matBadgePosition="below after" matBadgeColor="accent">
-                        <mat-icon>shopping_cart</mat-icon>
-                    </button>
-                </div>
+<div fxFlex="100" class="shop-wrap p10" fxLayout="row" fxLayoutWrap="wrap">
+    <div class="full-width">
+        <div fxLayout="row" class="shop-top-toolbar">
+            <div class="product-search-wrap">
+                <form [formGroup]="filterForm">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Buscar por nombre" apareance="outline"
+                               [formControl]="filterForm.controls['search']">
+                    </mat-form-field>
+                </form>
             </div>
-            <!-- Products container -->
-            <div class="product-container" [ngClass]="{'list-view': viewMode === 'list-view'}">
-                <!-- Product Box -->
-                <div class="product-wrap" *ngFor="let product of products; let i = index;"
-                     [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}">
-                    <div class="product-inner default-bg">
-                        <button mat-flat-button class="product-badge mat-elevation-z7"
-                                [ngStyle]="{background: '#fb8c01'}" matTooltip="Agregar al carrito"
-                                (click)="addToCart(product)">
-                            <mat-icon>add_shopping_cart</mat-icon>
-                        </button>
-                        <div class="featured-img"><img [src]="product.photo" alt=""></div>
-                        <div class="info-wrap p-16">
-                            <div class="main-info">
-                                <h3 class="title"> {{ product.name }} </h3>
-                                <p class="p-line"> {{ product?.description }} </p>
+            <span fxFlex></span>
+            <button mat-mini-fab color="primary" [matBadge]="(_productService.productsInCart$ | async).length"
+                    matBadgePosition="below after" matBadgeColor="accent">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
+        </div>
+        <!-- Products container -->
+        <div class="product-container" [ngClass]="{'list-view': viewMode === 'list-view'}">
+            <!-- Product Box -->
+            <div class="product-wrap" *ngFor="let product of products; let i = index;"
+                 [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}">
+                <div class="product-inner default-bg">
+                    <button mat-flat-button class="product-badge mat-elevation-z7"
+                            [ngStyle]="{background: '#fb8c01'}" matTooltip="Agregar al carrito"
+                            (click)="addToCart(product)">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                    <div class="featured-img"><img [src]="product.photo" alt=""></div>
+                    <div class="info-wrap p-16">
+                        <div class="main-info">
+                            <h3 class="title"> {{ product.name }} </h3>
+                            <p class="p-line"> {{ product?.description }} </p>
+                        </div>
+                        <div fxFlex="100" fxLayout="row wrap" fxLayout.lt-md="column"
+                             fxLayoutAlign="space-between center">
+                            <div fxFlex="33.3" fxLayout="row" fxLayoutAlign="center center">
+                                <div class="price">
+                                    <span>{{product?.priceSmall | currency:"COP":"symbol-narrow"}}</span>
+                                    <span class="text-muted"> Pizzeta </span>
+                                </div>
                             </div>
-                            <div fxFlex="100" fxLayout="row wrap" fxLayout.lt-md="column"
-                                 fxLayoutAlign="space-between center">
-                                <div fxFlex="33.3" fxLayout="row" fxLayoutAlign="center center">
-                                    <div class="price">
-                                        <span>{{product?.priceSmall | currency:"COP":"symbol-narrow"}}</span>
-                                        <span class="text-muted"> Pizzeta </span>
-                                    </div>
+                            <div fxFlex="33.3" fxLayoutAlign="center center">
+                                <div class="price">
+                                    <span>{{product?.priceMedium | currency:"COP":"symbol-narrow"}}</span>
+                                    <span class="text-muted"> Mediana </span>
                                 </div>
-                                <div fxFlex="33.3" fxLayoutAlign="center center">
-                                    <div class="price">
-                                        <span>{{product?.priceMedium | currency:"COP":"symbol-narrow"}}</span>
-                                        <span class="text-muted"> Mediana </span>
-                                    </div>
-                                </div>
-                                <div fxFlex="33.3" fxLayoutAlign="center center">
-                                    <div class="price">
-                                        <span>{{product?.priceLarge | currency:"COP":"symbol-narrow"}}</span>
-                                        <span class="text-muted"> Grande </span>
-                                    </div>
+                            </div>
+                            <div fxFlex="33.3" fxLayoutAlign="center center">
+                                <div class="price">
+                                    <span>{{product?.priceLarge | currency:"COP":"symbol-narrow"}}</span>
+                                    <span class="text-muted"> Grande </span>
                                 </div>
                             </div>
                         </div>
-                        <!-- Visible when viewMode === list-view -->
-                        <div class="more-info-wrap p-1" *ngIf="viewMode === 'list-view'">
-                            <div class="more-info">
-                                <div class="more-actions mb-1">
-                                    <div class="product-rating">
-                                    </div>
-                                    <span fxFlex></span>
-                                    <button mat-icon-button>
-                                        <mat-icon>playlist_add</mat-icon>
-                                    </button>
-                                    <button mat-icon-button>
-                                        <mat-icon>favorite</mat-icon>
-                                    </button>
-                                </div>
-
-                                <div>
-                                    <ul>
-                                        <li>
-                                            <mat-icon>check</mat-icon>
-                                            Heavy duty
-                                        </li>
-                                        <li>
-                                            <mat-icon>check</mat-icon>
-                                            Water resistance
-                                        </li>
-                                        <li>
-                                            <mat-icon>check</mat-icon>
-                                            Clean design
-                                        </li>
-                                        <li>
-                                            <mat-icon>check</mat-icon>
-                                            High quality raw materials
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-                <!-- End Product -->
             </div>
-            <!-- End Products container -->
+            <!-- End Product -->
         </div>
+        <!-- End Products container -->
     </div>
-</mat-sidenav-container>
+</div>
