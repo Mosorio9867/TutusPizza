@@ -1,28 +1,28 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule, Routes} from '@angular/router';
-import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import {MatButtonModule, MatIconModule} from '@angular/material';
-import {TranslateModule} from '@ngx-translate/core';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatButtonModule, MatIconModule } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
-import {FuseModule} from '@fuse/fuse.module';
-import {FuseSharedModule} from '@fuse/shared.module';
-import {FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule} from '@fuse/components';
+import { FuseModule } from '@fuse/fuse.module';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
-import {fuseConfig} from 'app/fuse-config';
+import { fuseConfig } from 'app/fuse-config';
 
-import {AppComponent} from 'app/app.component';
-import {LayoutModule} from 'app/layout/layout.module';
-import {AngularFireModule} from "@angular/fire";
-import {environment} from "./environments/environment";
-import {AngularFirestoreModule} from "@angular/fire/firestore";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {UserService} from "./shared/services/user.service";
-import {AuthGuardService} from "./shared/services/auth-guard.service";
-import {AngularFireAuthModule} from "@angular/fire/auth";
+import { AppComponent } from 'app/app.component';
+import { LayoutModule } from 'app/layout/layout.module';
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "./environments/environment";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { UserService } from "./shared/services/user.service";
+import { AuthGuardService } from "./shared/services/auth-guard.service";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 const appRoutes: Routes = [
     {
@@ -55,7 +55,7 @@ const appRoutes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes, {useHash: true}),
+        RouterModule.forRoot(appRoutes, { useHash: false }),
 
         TranslateModule.forRoot(),
 

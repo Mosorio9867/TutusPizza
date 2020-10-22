@@ -5,25 +5,23 @@
                 <form [formGroup]="filterForm">
                     <mat-form-field>
                         <input matInput type="text" placeholder="Buscar por nombre" apareance="outline"
-                               [formControl]="filterForm.controls['search']">
+                            [formControl]="filterForm.controls['search']">
                     </mat-form-field>
                 </form>
             </div>
             <span fxFlex></span>
-            <button mat-mini-fab color="primary" [matBadge]="(_productService.productsInCart$ | async).length"
-                    matBadgePosition="below after" matBadgeColor="accent">
+            <button mat-mini-fab color="primary" routerLink="/pages/sales/cart"
+                [matBadge]="(_productService.productsInCart$ | async).length" matBadgePosition="below after"
+                matBadgeColor="accent">
                 <mat-icon>shopping_cart</mat-icon>
             </button>
         </div>
-        <!-- Products container -->
         <div class="product-container" [ngClass]="{'list-view': viewMode === 'list-view'}">
-            <!-- Product Box -->
             <div class="product-wrap" *ngFor="let product of products; let i = index;"
-                 [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}">
+                [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}">
                 <div class="product-inner default-bg">
-                    <button mat-flat-button class="product-badge mat-elevation-z7"
-                            [ngStyle]="{background: '#fb8c01'}" matTooltip="Agregar al carrito"
-                            (click)="addToCart(product)">
+                    <button mat-flat-button class="product-badge mat-elevation-z7" [ngStyle]="{background: '#fb8c01'}"
+                        matTooltip="Agregar al carrito" (click)="addToCart(product)">
                         <mat-icon>add_shopping_cart</mat-icon>
                     </button>
                     <div class="featured-img"><img [src]="product.photo" alt=""></div>
@@ -33,7 +31,7 @@
                             <p class="p-line"> {{ product?.description }} </p>
                         </div>
                         <div fxFlex="100" fxLayout="row wrap" fxLayout.lt-md="column"
-                             fxLayoutAlign="space-between center">
+                            fxLayoutAlign="space-between center">
                             <div fxFlex="33.3" fxLayout="row" fxLayoutAlign="center center">
                                 <div class="price">
                                     <span>{{product?.priceSmall | currency:"COP":"symbol-narrow"}}</span>
@@ -56,8 +54,6 @@
                     </div>
                 </div>
             </div>
-            <!-- End Product -->
         </div>
-        <!-- End Products container -->
     </div>
 </div>

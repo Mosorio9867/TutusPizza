@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MatSidenav} from "@angular/material/sidenav";
-import {fuseAnimations} from "../../../../../@fuse/animations";
-import {Product, ProductInCart} from "../../product/product.module";
-import {ProductService} from "../../../../shared/services/product.service";
-import {map} from "rxjs/operators";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatSidenav } from "@angular/material/sidenav";
+import { fuseAnimations } from "../../../../../@fuse/animations";
+import { Product, ProductInCart } from "../../product/product.module";
+import { ProductService } from "../../../../shared/services/product.service";
+import { map } from "rxjs/operators";
 
 @Component({
     selector: 'app-sale-listing',
@@ -18,18 +18,16 @@ export class SaleListingComponent implements OnInit {
     public filterForm: FormGroup;
     public currentPage: any;
     public categories: any[] = [
-        {id: 'salty', text: 'Pizzas saladas'},
-        {id: 'desserts', text: 'Pizzas postres'},
+        { id: 'salty', text: 'Pizzas saladas' },
+        { id: 'desserts', text: 'Pizzas postres' },
     ];
     public products: Product[] = [];
 
-    @ViewChild(MatSidenav, {static: true}) private sideNav: MatSidenav;
-
     constructor(
         private _formBuilder: FormBuilder,
-        private _productService: ProductService
+        public _productService: ProductService
     ) {
-        this.filterForm = _formBuilder.group({
+        this.filterForm = this._formBuilder.group({
             search: [null]
         });
     }
@@ -43,7 +41,7 @@ export class SaleListingComponent implements OnInit {
             .pipe(
                 map((response: Product[]) => {
                     return response.map((product: Product) => {
-                        return {...product, photo: '../../../../assets/images/profile/braies-lake-small.jpg'}
+                        return { ...product, photo: '../../../../assets/images/profile/braies-lake-small.jpg' }
                     }).filter((e: Product) => e.active)
                 })
             )
@@ -55,11 +53,11 @@ export class SaleListingComponent implements OnInit {
     addToCart(element: any): void {
         const productRepeat = this._productService.productsInCartSubject.getValue().filter((e: any) => e.id === element.id);
         if (productRepeat.length === 0) {
-            this._productService.productsInCartSubject.getValue().push({...element, quantity: 1});
+            this._productService.productsInCartSubject.getValue().push({ ...element, quantity: 1 });
             this._productService.addToCart(this._productService.productsInCartSubject.getValue());
         } else {
             this._productService.addToCart(this._productService.productsInCartSubject.getValue().map((e: ProductInCart) => {
-                return {...e, quantity: e.quantity + 1}
+                return { ...e, quantity: e.quantity + 1 }
             }));
         }
     }
